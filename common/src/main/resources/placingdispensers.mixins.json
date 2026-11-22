@@ -2,12 +2,13 @@
   "required": true,
   "minVersion": "0.8",
   "package": "io.github.emberbocor.placingdispensers.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
     "DefaultDispenseItemBehaviorMixin",
     "DispenserBlockAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "refmap": "placingdispensers.refmap.json"
 }

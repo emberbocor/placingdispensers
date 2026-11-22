@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import io.github.emberbocor.placingdispensers.platform.Services;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
@@ -29,7 +28,8 @@ public final class ServerConfig {
 
     public record Settings(boolean enabled, Set<ResourceLocation> excludedIds, List<TagKey<Block>> excludedTags) {
         public boolean excludes(Block block) {
-            if (excludedIds.contains(BuiltInRegistries.BLOCK.getKey(block))) {
+            // Forge 1.20.1 deprecates BuiltInRegistries.BLOCK; the block's holder carries the same ID.
+            if (block.defaultBlockState().getBlockHolder().unwrapKey().map(key -> excludedIds.contains(key.location())).orElse(false)) {
                 return true;
             }
             for (TagKey<Block> tag : excludedTags) {

@@ -2,22 +2,20 @@ package io.github.emberbocor.placingdispensers.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import io.github.emberbocor.placingdispensers.placing.BlockPlacing;
+import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
-import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.DispenserBlock;
 
 @Mixin(DefaultDispenseItemBehavior.class)
 public abstract class DefaultDispenseItemBehaviorMixin {
-    @Unique
     private boolean placingdispensers$kept;
 
     @Shadow
@@ -32,7 +30,7 @@ public abstract class DefaultDispenseItemBehaviorMixin {
         placingdispensers$kept = false;
         if (BlockPlacing.place(source, stack, (DefaultDispenseItemBehavior) (Object) this)) {
             playSound(source);
-            playAnimation(source, source.state().getValue(DispenserBlock.FACING));
+            playAnimation(source, source.getBlockState().getValue(DispenserBlock.FACING));
             cir.setReturnValue(stack);
         }
     }
@@ -51,7 +49,7 @@ public abstract class DefaultDispenseItemBehaviorMixin {
     private void placingdispensers$failSound(BlockSource source, CallbackInfo ci) {
         if (placingdispensers$kept) {
             placingdispensers$kept = false;
-            source.level().levelEvent(1001, source.pos(), 0);
+            source.getLevel().levelEvent(1001, source.getPos(), 0);
             ci.cancel();
         }
     }

@@ -6,7 +6,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.jetbrains.annotations.Nullable;
 import org.slf4j.helpers.MessageFormatter;
 
 import com.electronwill.nightconfig.core.UnmodifiableConfig;
@@ -26,7 +25,7 @@ final class ServerConfigReader {
         this.file = file;
     }
 
-    ServerConfig.Settings read(@Nullable UnmodifiableConfig config) {
+    ServerConfig.Settings read(UnmodifiableConfig config) {
         ServerConfig.Settings defaults = ServerConfig.DEFAULTS;
         if (config == null) {
             return defaults;
