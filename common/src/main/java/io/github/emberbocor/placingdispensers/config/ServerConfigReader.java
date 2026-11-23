@@ -13,7 +13,7 @@ import com.electronwill.nightconfig.core.UnmodifiableConfig;
 
 import io.github.emberbocor.placingdispensers.PlacingDispensers;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
@@ -37,7 +37,7 @@ final class ServerConfigReader {
             }
         }
 
-        Set<ResourceLocation> ids = new LinkedHashSet<>();
+        Set<Identifier> ids = new LinkedHashSet<>();
         List<TagKey<Block>> tags = new ArrayList<>();
         Object excluded = config.get("excludedBlocks");
         if (excluded instanceof List<?> entries) {
@@ -62,11 +62,11 @@ final class ServerConfigReader {
         return fallback;
     }
 
-    private void addExclusion(Object entry, Set<ResourceLocation> ids, List<TagKey<Block>> tags) {
+    private void addExclusion(Object entry, Set<Identifier> ids, List<TagKey<Block>> tags) {
         if (entry instanceof String text) {
             boolean tag = text.startsWith("#");
             String name = tag ? text.substring(1) : text;
-            ResourceLocation id = name.isBlank() ? null : ResourceLocation.tryParse(name);
+            Identifier id = name.isBlank() ? null : Identifier.tryParse(name);
             if (id != null) {
                 if (tag) {
                     TagKey<Block> key = TagKey.create(Registries.BLOCK, id);

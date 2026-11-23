@@ -6,7 +6,7 @@ import java.util.Set;
 
 import io.github.emberbocor.placingdispensers.platform.Services;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
@@ -27,7 +27,7 @@ public final class ServerConfig {
         return settings;
     }
 
-    public record Settings(boolean enabled, Set<ResourceLocation> excludedIds, List<TagKey<Block>> excludedTags) {
+    public record Settings(boolean enabled, Set<Identifier> excludedIds, List<TagKey<Block>> excludedTags) {
         public boolean excludes(Block block) {
             if (excludedIds.contains(BuiltInRegistries.BLOCK.getKey(block))) {
                 return true;

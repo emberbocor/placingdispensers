@@ -36,13 +36,13 @@ What stays vanilla:
 
 | | NeoForge | Forge | Fabric |
 |---|---|---|---|
-| Minecraft | 1.21.1 | 1.21.1 | 1.21.1 |
+| Minecraft | 1.21.11 | 1.21.11 | 1.21.11 |
 | Java | 21 | 21 | 21 |
-| Loader | NeoForge 21.1.1 or newer | Forge 52.0.0 or newer | Fabric Loader 0.15.11 or newer |
-| Other | | | Fabric API 0.102.0+1.21.1 or newer for Minecraft 1.21.1 |
-| Jar | `placingdispensers-neoforge-1.21.1-<version>.jar` | `placingdispensers-forge-1.21.1-<version>.jar` | `placingdispensers-fabric-1.21.1-<version>.jar` |
+| Loader | NeoForge 21.11.42 or newer | Forge 61.0.1 or newer | Fabric Loader 0.17.3 or newer |
+| Other | | | Fabric API 0.139.5+1.21.11 or newer for Minecraft 1.21.11 |
+| Jar | `placingdispensers-neoforge-1.21.11-<version>.jar` | `placingdispensers-forge-1.21.11-<version>.jar` | `placingdispensers-fabric-1.21.11-<version>.jar` |
 
-On Minecraft 1.21.1, NeoForge and Forge are separate loaders that do not run each other's mods, so each has its own jar. Pick the jar that matches your game's loader.
+On Minecraft 1.21.11, NeoForge and Forge are separate loaders that do not run each other's mods, so each has its own jar. Pick the jar that matches your game's loader.
 
 ### Client and server
 
@@ -79,7 +79,7 @@ Removing the mod restores vanilla dispensing: block items are thrown out again. 
 
 ## Compatibility
 
-- Targets Minecraft 1.21.1. Use one matching loader jar at a time.
+- Targets Minecraft 1.21.11. Use one matching loader jar at a time.
 - **Ranching Dispensers:** placing comes first. A carrot or seed aimed at farmland is planted; if it cannot be placed, Ranching Dispensers can still use it to feed an animal in front. If neither mod uses it, the item stays in the dispenser. The two mods do not depend on each other.
 - Block items added by other mods are placed like vanilla ones unless that mod registers its own dispenser action for them.
 - Mods that replace dispenser behaviors or change the default dispenser action may take priority or conflict.
@@ -94,7 +94,7 @@ Use JDK 21 and the included Gradle wrapper:
 
 Release jars are written to `neoforge/build/libs/`, `forge/build/libs/` and `fabric/build/libs/`. Use Fabric's remapped jar from `fabric/build/libs/`; development jars are not release artifacts.
 
-Development profiles use `runs/1.21.1/neoforge` for both NeoForge sides, and separate `runs/1.21.1/forge-client`, `forge-server`, `fabric-client` and `fabric-server` directories. These directories are ignored by Git.
+Development profiles use `runs/1.21.11/neoforge` for both NeoForge sides, and separate `runs/1.21.11/forge-client`, `forge-server`, `fabric-client` and `fabric-server` directories. These directories are ignored by Git.
 
 ## License
 
