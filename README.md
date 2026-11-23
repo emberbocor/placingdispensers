@@ -21,6 +21,7 @@ Point a **vanilla dispenser** at the space where the block should go and give it
 - **Placing.** The block is placed in the space directly in front of the dispenser, the same way a vanilla dispenser places a shulker box. One item is used, you hear the block's normal placing sound and the dispenser plays its usual click and smoke.
 - **When it is placed.** The space must hold air, water, lava or another replaceable block (such as short grass or a single snow layer), no entity may be in the way, and the block must be able to stay there: crops need farmland and light, saplings and flowers need soil, torches need something to stand on or hang from. Blocks that also need room next to them, such as doors, beds and tall flowers, need that room too.
 - **When it is not placed.** The item stays in the dispenser and the dispenser plays its failure click. This includes seeds aimed at ordinary dirt, a sapling aimed at stone, or a space that is already filled. If the block in front is the same block the item would place (a slab in front of the same slab, snow in front of snow layers, scaffolding in front of scaffolding), nothing is placed either.
+- **Sulfur cubes.** A sulfur cube in front is in the way, so blocks it can swallow are given to it as in vanilla. Without a sulfur cube, those blocks are placed like any other block.
 - **Facing.** Blocks are placed as if a player looked in the dispenser's direction while looking straight down. Blocks with a horizontal facing follow the dispenser: furnaces and similar blocks face the dispenser, stairs rise away from it, beds and doors point along it. A dispenser facing up or down places them facing north. Blocks that can face up and down, such as pistons, observers and barrels, are always placed vertically. Logs and other pillars stand upright when there is a block below the target space, and lie along the dispenser's direction when there is not.
 - **Block data.** Names and other data stored on the item are applied as when a player without operator rights places the block.
 
@@ -36,13 +37,13 @@ What stays vanilla:
 
 | | NeoForge | Forge | Fabric |
 |---|---|---|---|
-| Minecraft | 26.1–26.1.2 | 26.1–26.1.2 | 26.1–26.1.2 |
+| Minecraft | 26.2 | 26.2 | 26.2 |
 | Java | 25 | 25 | 25 |
-| Loader | NeoForge 26.1.0.1-beta or newer for your Minecraft version | Forge 62.0.0 (26.1), 63.0.0 (26.1.1) or 64.0.0 (26.1.2) or newer for that Minecraft version | Fabric Loader 0.18.4 or newer |
-| Other | | | Fabric API 0.144.0+26.1 or newer for Minecraft 26.1–26.1.2 |
-| Jar | `placingdispensers-neoforge-26.1-26.1.2-<version>.jar` | `placingdispensers-forge-26.1-26.1.2-<version>.jar` | `placingdispensers-fabric-26.1-26.1.2-<version>.jar` |
+| Loader | NeoForge 26.2.0.0-beta or newer | Forge 65.0.0 or newer | Fabric Loader 0.18.4 or newer |
+| Other | | | Fabric API 0.152.1+26.2 or newer for Minecraft 26.2 |
+| Jar | `placingdispensers-neoforge-26.2-<version>.jar` | `placingdispensers-forge-26.2-<version>.jar` | `placingdispensers-fabric-26.2-<version>.jar` |
 
-On Minecraft 26.1–26.1.2, NeoForge and Forge are separate loaders that do not run each other's mods, so each has its own jar. Pick the jar that matches your game's loader.
+On Minecraft 26.2, NeoForge and Forge are separate loaders that do not run each other's mods, so each has its own jar. Pick the jar that matches your game's loader.
 
 ### Client and server
 
@@ -79,7 +80,7 @@ Removing the mod restores vanilla dispensing: block items are thrown out again. 
 
 ## Compatibility
 
-- Targets Minecraft 26.1–26.1.2. Use one matching loader jar at a time.
+- Targets Minecraft 26.2. Use one matching loader jar at a time.
 - **Ranching Dispensers:** placing comes first. A carrot or seed aimed at farmland is planted; if it cannot be placed, Ranching Dispensers can still use it to feed an animal in front. If neither mod uses it, the item stays in the dispenser. The two mods do not depend on each other.
 - Block items added by other mods are placed like vanilla ones unless that mod registers its own dispenser action for them.
 - Mods that replace dispenser behaviors or change the default dispenser action may take priority or conflict.
@@ -94,7 +95,7 @@ Use JDK 25 and the included Gradle wrapper:
 
 Release jars are written to `neoforge/build/libs/`, `forge/build/libs/` and `fabric/build/libs/`. Use Fabric's ordinary jar from `fabric/build/libs/`; development jars are not release artifacts.
 
-Development profiles use `runs/26.1/neoforge` for both NeoForge sides, and separate `runs/26.1/forge-client`, `forge-server`, `fabric-client` and `fabric-server` directories. These directories are ignored by Git.
+Development profiles use `runs/26.2/neoforge` for both NeoForge sides, and separate `runs/26.2/forge-client`, `forge-server`, `fabric-client` and `fabric-server` directories. These directories are ignored by Git.
 
 ## License
 

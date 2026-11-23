@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.core.dispenser.SulfurCubeBlockDispenseItemBehavior;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.GameMasterBlockItem;
@@ -21,7 +22,7 @@ public final class BlockPlacing {
     private BlockPlacing() {
     }
 
-    /** True when this dispense belongs to the mod: a dispenser's plain default behavior with a placeable block item. */
+    /** True when this dispense belongs to the mod: a dispenser's plain default or sulfur cube behavior with a placeable block item. */
     public static boolean handles(BlockSource source, ItemStack stack, DefaultDispenseItemBehavior behavior) {
         return blockItem(source, stack, behavior) != null;
     }
@@ -51,8 +52,12 @@ public final class BlockPlacing {
     @Nullable
     private static BlockItem blockItem(BlockSource source, ItemStack stack, DefaultDispenseItemBehavior behavior) {
         ServerConfig.Settings settings = ServerConfig.settings();
-        if (!settings.enabled() || !source.state().is(Blocks.DISPENSER)
-                || behavior != DispenserBlockAccessor.placingdispensers$getDefaultBehavior()) {
+        if (!settings.enabled() || !source.state().is(Blocks.DISPENSER)) {
+            return null;
+        }
+        // Many full blocks get the sulfur cube behavior: placing goes first, a sulfur cube in front blocks it and swallows.
+        if (behavior != DispenserBlockAccessor.placingdispensers$getDefaultBehavior()
+                && behavior != SulfurCubeBlockDispenseItemBehavior.INSTANCE) {
             return null;
         }
         if (stack.getItem() instanceof BlockItem item && !(item instanceof GameMasterBlockItem)
